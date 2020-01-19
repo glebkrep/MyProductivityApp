@@ -59,8 +59,10 @@ class TomatoFragment : Fragment() {
 
             viewModel.tomatoAddEndTime(currentTomato.id!!,endTime)
             val bundle = Bundle()
-
-            findNavController().navigate(R.id.action_tomatoFragment_to_chillFragment2)
+            currentTomato.endTime = endTime
+            bundle.putParcelable("currentTomato",currentTomato)
+            bundle.putParcelable("currentType",currentType)
+            findNavController().navigate(R.id.action_tomatoFragment_to_chillFragment2,bundle)
         }
 
 
