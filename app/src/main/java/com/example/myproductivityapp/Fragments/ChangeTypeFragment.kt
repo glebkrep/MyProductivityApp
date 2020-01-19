@@ -50,7 +50,6 @@ class ChangeTypeFragment : Fragment() {
                 ChangeTypeSpinner.setItems(namesList.toList())
                 ChangeTypeSpinner.setOnItemSelectedListener { view, position, id, item->
                     Util.showShortToast(context!!,item.toString())
-                    chosenId = position.toInt()
                     if (item.toString() =="Add new..."){
                         findNavController().navigate(R.id.action_changeTypeFragment_to_newTypeFragment)
                     }
@@ -70,19 +69,15 @@ class ChangeTypeFragment : Fragment() {
         })
 
         StartTomatoButton.setOnClickListener {
-            if (chosenId==-1){
-                Util.showShortToast(context!!,"Make selection!")
-            }
-            else{
-                val type = allTypes[chosenId]
-                //TODO:
-                //2) start notification for end of tomato
-                val newTomato = Tomato(type = type.id!!)
-                val bundle = Bundle()
-                bundle.putParcelable("currentTomato",newTomato)
-                bundle.putParcelable("currentType",type)
-                findNavController().navigate(R.id.action_changeTypeFragment_to_tomatoFragment,bundle)
-            }
+            val type = allTypes[ChangeTypeSpinner.selectedIndex]
+            //TODO:
+            //2) start notification for end of tomato
+            val newTomato = Tomato(type = type.id!!,isCurrent = true)
+            viewModel.tomatoInsert(newTomato)
+//            val bundle = Bundle()
+//            bundle.putParcelable("currentTomato",newTomato)
+//            bundle.putParcelable("currentType",type)
+            findNavController().navigate(R.id.action_changeTypeFragment_to_splashFragment)
         }
 
     }

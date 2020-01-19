@@ -57,10 +57,8 @@ class ChillFragment : Fragment() {
             //4) set notif for end of new tomato
             viewModel.tomatoMarkInactive(currentTomato.id!!)
             val newTomato = Tomato(type = currentType.id!!)
-            val bundle = Bundle()
-            bundle.putParcelable("currentTomato",newTomato)
-            bundle.putParcelable("currentType",currentType)
-            findNavController().navigate(R.id.action_chillFragment_to_tomatoFragment)
+            viewModel.tomatoInsert(newTomato)
+            findNavController().navigate(R.id.action_chillFragment_to_splashFragment)
 
         }
         ChangeTypeButton.setOnClickListener {
@@ -80,7 +78,8 @@ class ChillFragment : Fragment() {
         //TODO: to util class
         val millisLeft= ((Util.CHILL_TIME - (System.currentTimeMillis() - currentTomato.endTime!!)))
 
-        val timer = myTimer(millisLeft,TimeText)
+        val timer = myTimer(millisLeft,ChillTimeText)
+        timer.start()
     }
 
     class myTimer(millisLeft:Long,val timerTextView: TextView): CountDownTimer(millisLeft,1000){

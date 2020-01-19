@@ -58,11 +58,7 @@ class TomatoFragment : Fragment() {
             val endTime = System.currentTimeMillis()
 
             viewModel.tomatoAddEndTime(currentTomato.id!!,endTime)
-            val bundle = Bundle()
-            currentTomato.endTime = endTime
-            bundle.putParcelable("currentTomato",currentTomato)
-            bundle.putParcelable("currentType",currentType)
-            findNavController().navigate(R.id.action_tomatoFragment_to_chillFragment2,bundle)
+            findNavController().navigate(R.id.action_tomatoFragment_to_splashFragment)
         }
 
 
@@ -75,6 +71,7 @@ class TomatoFragment : Fragment() {
         val millisLeft= ((Util.TOMATO_TIME - (System.currentTimeMillis() - tomato.startTime)))
 
         val timer = myTimer(millisLeft,TimeText)
+        timer.start()
     }
 
     class myTimer(millisLeft:Long,val timerTextView:TextView):CountDownTimer(millisLeft,1000){

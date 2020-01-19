@@ -20,8 +20,8 @@
             android:id="@+id/action_tomatoFragment_to_changeTypeFragment"
             app:destination="@id/changeTypeFragment" />
         <action
-            android:id="@+id/action_tomatoFragment_to_chillFragment2"
-            app:destination="@id/chillFragment" />
+            android:id="@+id/action_tomatoFragment_to_splashFragment"
+            app:destination="@id/splashFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -55,8 +55,8 @@
             android:id="@+id/action_chillFragment_to_changeTypeFragment"
             app:destination="@id/changeTypeFragment" />
         <action
-            android:id="@+id/action_chillFragment_to_tomatoFragment"
-            app:destination="@id/tomatoFragment" />
+            android:id="@+id/action_chillFragment_to_splashFragment"
+            app:destination="@id/splashFragment" />
     </fragment>
     <fragment
         android:id="@+id/changeTypeFragment"
@@ -67,8 +67,8 @@
             android:id="@+id/action_changeTypeFragment_to_newTypeFragment"
             app:destination="@id/newTypeFragment" />
         <action
-            android:id="@+id/action_changeTypeFragment_to_tomatoFragment"
-            app:destination="@id/tomatoFragment" />
+            android:id="@+id/action_changeTypeFragment_to_splashFragment"
+            app:destination="@id/splashFragment" />
     </fragment>
     <fragment
         android:id="@+id/newTypeFragment"
