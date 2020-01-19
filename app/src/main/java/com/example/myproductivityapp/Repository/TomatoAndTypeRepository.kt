@@ -6,6 +6,7 @@ class TomatoAndTypeRepository(private val tomatoDao: TomatoDao,private val typeD
 
     val lastTomato:LiveData<Tomato> = tomatoDao.getLastTomato()
     val allTypes:LiveData<List<Type>> = typeDao.getAllTypes()
+    val allTomatos = tomatoDao.getAllTomatos()
 
     //TYPE
     fun getTypeById(id:Int):LiveData<List<Type>> = typeDao.getTypeById(id)

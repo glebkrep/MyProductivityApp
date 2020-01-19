@@ -44,8 +44,8 @@ class ChangeTypeFragment : Fragment() {
             if (it.isNotEmpty()){
                 allTypes = it
 
-                //TODO sep function
-                viewModel.tomatoForDay.observe(this, Observer {
+                //TODO sep function (might need a change to day tomatos)
+                viewModel.allTomatos.observe(this, Observer {
                     if (it.isNotEmpty()){
                         adapter = PastTomatosAdapter(context!!)
                         ChangeTypePastTomatosRV.adapter = adapter

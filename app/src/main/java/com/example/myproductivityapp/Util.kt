@@ -31,6 +31,7 @@ object Util {
 
 
     fun fromTo(startTime: Long, endTime: Long?): String {
+        if (endTime==null) return "from "+ millisToDate(startTime)
         return "from " + millisToDate(startTime) + " to " + millisToDate(endTime!!)
     }
 
@@ -40,13 +41,28 @@ object Util {
     }
 
     fun totalTime(endTime: Long?, startTime: Long): String {
-        val time = endTime!!-startTime
-        var dateFormat:String = ""
-        if (time<1000L*60L*60L){
-             dateFormat = "mm:ss"
+        if (endTime==null) return "..."
+        var time = endTime!!-startTime
+        var totalSeconds = time/1000L
+        var hours = totalSeconds/60/60
+        totalSeconds = totalSeconds - hours*60*60
+        var minutes = totalSeconds/60
+        totalSeconds = totalSeconds - minutes*60
+        var timeString = getEnoughDigits(minutes)+":"+ getEnoughDigits(totalSeconds)
+        if (hours>0){
+            timeString = hours.toString()+":"+ timeString
         }
-        else dateFormat = "HH:mm:ss"
-        return DateFormat.format(dateFormat,time).toString()
+        return timeString
     }
 
+    private fun getEnoughDigits(time:Long):String{
+        var stringTime = time.toString()
+        if (stringTime.length==1){
+            stringTime = "0"+stringTime
+        }
+        else if(stringTime.length==0){
+            stringTime = "00"
+        }
+        return stringTime
+    }
 }

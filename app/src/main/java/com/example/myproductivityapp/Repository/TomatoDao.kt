@@ -12,8 +12,12 @@ interface TomatoDao{
     @Query("select * from tomato_table order by start_time desc limit 1")
     fun getLastTomato(): LiveData<Tomato>
 
-    @Query("select * from tomato_table where start_time >=:startOfDay ")
+    @Query("select * from tomato_table where start_time >=:startOfDay order by start_time desc")
     fun getTomatoForDay(startOfDay:Long):LiveData<List<Tomato>>
+
+    @Query("select * from tomato_table order by start_time desc")
+    fun getAllTomatos():LiveData<List<Tomato>>
+
 
     @Insert
     suspend fun insert(tomato: Tomato)

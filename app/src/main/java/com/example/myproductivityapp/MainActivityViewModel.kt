@@ -14,6 +14,7 @@ class MainActivityViewModel(application: Application):AndroidViewModel(applicati
     val lastTomato: LiveData<Tomato>
     val allTypes:LiveData<List<Type>>
     val tomatoForDay:LiveData<List<Tomato>>
+    val allTomatos:LiveData<List<Tomato>>
 
     init {
         val tomatoDao =
@@ -25,6 +26,7 @@ class MainActivityViewModel(application: Application):AndroidViewModel(applicati
 
         lastTomato = repository.lastTomato
         allTypes = repository.allTypes
+        allTomatos = repository.allTomatos
 
         //TODO: to sep. function
         val cal = Calendar.getInstance()
