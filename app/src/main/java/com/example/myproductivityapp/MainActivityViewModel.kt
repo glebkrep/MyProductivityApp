@@ -34,7 +34,11 @@ class MainActivityViewModel(application: Application):AndroidViewModel(applicati
         tomatoForDay = repository.getTomatoForDay(cal.timeInMillis)
     }
 
+
+
     //TYPE
+    fun typeById(id:Int) = repository.getTypeById(id = id)
+
     fun typeInsert(type:Type) = viewModelScope.launch {
         repository.insertType(type)
     }
@@ -58,5 +62,10 @@ class MainActivityViewModel(application: Application):AndroidViewModel(applicati
     }
 
 
+
+    fun stopTomato(tomato:Tomato) = viewModelScope.launch {
+        tomatoAddEndTime(tomato.id!!,System.currentTimeMillis())
+        tomatoMarkInactive(tomato.id!!)
+    }
 
 }

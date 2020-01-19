@@ -3,4 +3,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pause_button_text">Pause</string>
+    <string name="stop_button_text">Stop</string>
+    <string name="chill_button_text">Chill</string>
+    <string name="back_to_work_text">Back to work</string>
+    <string name="change_type">Change work type</string>
+    <string name="choose_type_text">Choose type:</string>
+    <string name="start_tomato_button_text">Start tomato</string>
 </resources>

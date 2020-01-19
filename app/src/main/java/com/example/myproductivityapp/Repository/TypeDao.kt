@@ -11,6 +11,9 @@ interface TypeDao{
     @Query("select * from type_table")
     fun getAllTypes(): LiveData<List<Type>>
 
+    @Query("select * from type_table where id=:id")
+    fun getTypeById(id:Int):LiveData<List<Type>>
+
     @Insert
     suspend fun insert(type: Type)
 

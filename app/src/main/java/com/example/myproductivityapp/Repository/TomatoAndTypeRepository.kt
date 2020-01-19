@@ -8,6 +8,7 @@ class TomatoAndTypeRepository(private val tomatoDao: TomatoDao,private val typeD
     val allTypes:LiveData<List<Type>> = typeDao.getAllTypes()
 
     //TYPE
+    fun getTypeById(id:Int):LiveData<List<Type>> = typeDao.getTypeById(id)
 
     suspend fun insertType(type:Type){
         typeDao.insert(type)

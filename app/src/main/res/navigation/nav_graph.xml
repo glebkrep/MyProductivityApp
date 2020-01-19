@@ -3,11 +3,76 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/tomatoFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/tomatoFragment"
         android:name="com.example.myproductivityapp.Fragments.TomatoFragment"
         android:label="fragment_tomato"
-        tools:layout="@layout/fragment_tomato" />
+        tools:layout="@layout/fragment_tomato" >
+        <argument
+            android:name="currentType"
+            app:argType="com.example.myproductivityapp.Repository.Type" />
+        <argument
+            android:name="currentTomato"
+            app:argType="com.example.myproductivityapp.Repository.Tomato" />
+        <action
+            android:id="@+id/action_tomatoFragment_to_changeTypeFragment"
+            app:destination="@id/changeTypeFragment" />
+        <action
+            android:id="@+id/action_tomatoFragment_to_chillFragment2"
+            app:destination="@id/chillFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.myproductivityapp.Fragments.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_tomatoFragment"
+            app:destination="@id/tomatoFragment"
+            app:popUpTo="@+id/tomatoFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_chillFragment"
+            app:destination="@id/chillFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_changeTypeFragment"
+            app:destination="@id/changeTypeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chillFragment"
+        android:name="com.example.myproductivityapp.Fragments.ChillFragment"
+        android:label="fragment_chill"
+        tools:layout="@layout/fragment_chill">
+        <argument
+            android:name="currentType"
+            app:argType="com.example.myproductivityapp.Repository.Type" />
+        <argument
+            android:name="currentTomato"
+            app:argType="com.example.myproductivityapp.Repository.Tomato" />
+        <action
+            android:id="@+id/action_chillFragment_to_changeTypeFragment"
+            app:destination="@id/changeTypeFragment" />
+        <action
+            android:id="@+id/action_chillFragment_to_tomatoFragment"
+            app:destination="@id/tomatoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeTypeFragment"
+        android:name="com.example.myproductivityapp.Fragments.ChangeTypeFragment"
+        android:label="fragment_change_type"
+        tools:layout="@layout/fragment_change_type" >
+        <action
+            android:id="@+id/action_changeTypeFragment_to_newTypeFragment"
+            app:destination="@id/newTypeFragment" />
+        <action
+            android:id="@+id/action_changeTypeFragment_to_tomatoFragment"
+            app:destination="@id/tomatoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newTypeFragment"
+        android:name="com.example.myproductivityapp.Fragments.NewTypeFragment"
+        android:label="fragment_new_type"
+        tools:layout="@layout/fragment_new_type" />
 </navigation>

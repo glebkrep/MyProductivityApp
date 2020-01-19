@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import kotlinx.coroutines.CoroutineScope
 
-@Database(entities = arrayOf(Tomato::class),version = 1)
+@Database(entities = arrayOf(Type::class),version = 1)
 abstract class TypeRoomDatabase: RoomDatabase() {
 
     abstract fun typeDao(): TypeDao
