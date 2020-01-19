@@ -13,7 +13,7 @@ data class Tomato(
     @ColumnInfo(name = "id")
     var id: Int? = null,
     @ColumnInfo(name = "is_current")
-    var isCurrent: Boolean = false,
+    var isCurrent: Boolean = true,
     @ColumnInfo(name = "length")
     val length: Long? = null,
     @ColumnInfo(name = "start_time")

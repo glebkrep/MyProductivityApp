@@ -9,8 +9,8 @@ import java.util.*
 @Dao
 interface TomatoDao{
 
-    @Query("select * from tomato_table where is_current=:mTrue")
-    fun getCurrentTomato(mTrue:Boolean = true): LiveData<List<Tomato>>
+    @Query("select * from tomato_table order by start_time desc limit 1")
+    fun getLastTomato(): LiveData<Tomato>
 
     @Query("select * from tomato_table where start_time >=:startOfDay ")
     fun getTomatoForDay(startOfDay:Long):LiveData<List<Tomato>>

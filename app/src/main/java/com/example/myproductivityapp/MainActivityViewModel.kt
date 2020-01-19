@@ -11,7 +11,7 @@ import java.util.*
 class MainActivityViewModel(application: Application):AndroidViewModel(application) {
     private val repository: TomatoAndTypeRepository
 
-    val currentTomato: LiveData<List<Tomato>>
+    val lastTomato: LiveData<Tomato>
     val allTypes:LiveData<List<Type>>
     val tomatoForDay:LiveData<List<Tomato>>
 
@@ -23,7 +23,7 @@ class MainActivityViewModel(application: Application):AndroidViewModel(applicati
         repository = TomatoAndTypeRepository(typeDao = typeDao,tomatoDao = tomatoDao)
 
 
-        currentTomato = repository.currentTomato
+        lastTomato = repository.lastTomato
         allTypes = repository.allTypes
 
         //TODO: to sep. function

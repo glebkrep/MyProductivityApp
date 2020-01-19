@@ -10,18 +10,16 @@
         android:name="com.example.myproductivityapp.Fragments.TomatoFragment"
         android:label="fragment_tomato"
         tools:layout="@layout/fragment_tomato" >
-        <argument
-            android:name="currentType"
-            app:argType="com.example.myproductivityapp.Repository.Type" />
-        <argument
-            android:name="currentTomato"
-            app:argType="com.example.myproductivityapp.Repository.Tomato" />
         <action
             android:id="@+id/action_tomatoFragment_to_changeTypeFragment"
-            app:destination="@id/changeTypeFragment" />
+            app:destination="@id/changeTypeFragment"
+            app:popUpTo="@+id/changeTypeFragment"
+            app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_tomatoFragment_to_splashFragment"
-            app:destination="@id/splashFragment" />
+            android:id="@+id/action_tomatoFragment_to_chillFragment"
+            app:destination="@id/chillFragment"
+            app:popUpTo="@+id/chillFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -35,28 +33,30 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_chillFragment"
-            app:destination="@id/chillFragment" />
+            app:destination="@id/chillFragment"
+            app:popUpTo="@+id/chillFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_changeTypeFragment"
-            app:destination="@id/changeTypeFragment" />
+            app:destination="@id/changeTypeFragment"
+            app:popUpTo="@+id/changeTypeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/chillFragment"
         android:name="com.example.myproductivityapp.Fragments.ChillFragment"
         android:label="fragment_chill"
         tools:layout="@layout/fragment_chill">
-        <argument
-            android:name="currentType"
-            app:argType="com.example.myproductivityapp.Repository.Type" />
-        <argument
-            android:name="currentTomato"
-            app:argType="com.example.myproductivityapp.Repository.Tomato" />
         <action
             android:id="@+id/action_chillFragment_to_changeTypeFragment"
-            app:destination="@id/changeTypeFragment" />
+            app:destination="@id/changeTypeFragment"
+            app:popUpTo="@+id/changeTypeFragment"
+            app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_chillFragment_to_splashFragment"
-            app:destination="@id/splashFragment" />
+            android:id="@+id/action_chillFragment_to_tomatoFragment"
+            app:destination="@id/tomatoFragment"
+            app:popUpTo="@+id/tomatoFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/changeTypeFragment"
@@ -67,8 +67,15 @@
             android:id="@+id/action_changeTypeFragment_to_newTypeFragment"
             app:destination="@id/newTypeFragment" />
         <action
-            android:id="@+id/action_changeTypeFragment_to_splashFragment"
-            app:destination="@id/splashFragment" />
+            android:id="@+id/action_changeTypeFragment_to_tomatoFragment"
+            app:destination="@id/tomatoFragment"
+            app:popUpTo="@+id/tomatoFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_changeTypeFragment_to_chillFragment"
+            app:destination="@id/chillFragment"
+            app:popUpTo="@+id/chillFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/newTypeFragment"

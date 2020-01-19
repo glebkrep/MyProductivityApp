@@ -6,22 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.CursorAdapter
-import android.widget.Spinner
-import android.widget.SpinnerAdapter
+import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproductivityapp.MainActivityViewModel
+import com.example.myproductivityapp.PastTomatosAdapter
 import com.example.myproductivityapp.R
 import com.example.myproductivityapp.Repository.Tomato
 import com.example.myproductivityapp.Util
 import kotlinx.android.synthetic.main.fragment_change_type.*
 import java.lang.reflect.Type
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class ChangeTypeFragment : Fragment() {
 
     override fun onCreateView(
@@ -34,14 +31,31 @@ class ChangeTypeFragment : Fragment() {
 
     lateinit var viewModel: MainActivityViewModel
     lateinit var allTypes:List<com.example.myproductivityapp.Repository.Type>
+    lateinit var allTomatos:List<Tomato>
+    lateinit var adapter:PastTomatosAdapter
     var chosenId = -1
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = Util.getViewModel(activity!!)
 
         viewModel.allTypes.observe(this, Observer {
+            //TODO: move to sep function
             if (it.isNotEmpty()){
                 allTypes = it
+
+                //TODO sep function
+                viewModel.tomatoForDay.observe(this, Observer {
+                    if (it.isNotEmpty()){
+                        adapter = PastTomatosAdapter(context!!)
+                        ChangeTypePastTomatosRV.adapter = adapter
+                        ChangeTypePastTomatosRV.layoutManager = LinearLayoutManager(context!!)
+                        //todo: set tomatos with their types map
+                        val typesMap = getTypesMap()
+                        adapter.setTomatosAndTypes(it,typesMap)
+                    }
+                })
+
                 val namesList = mutableListOf<String>()
                 for (type in it){
                     namesList.add(type.name)
@@ -66,19 +80,46 @@ class ChangeTypeFragment : Fragment() {
                     }
                 }
             }
+
         })
 
+
+        viewModel.lastTomato.observe(this, Observer {
+            it?.let {
+                if (it.isCurrent){
+                    if (it.endTime==null) findNavController().navigate(R.id.action_changeTypeFragment_to_chillFragment)
+                    else findNavController().navigate(R.id.action_changeTypeFragment_to_tomatoFragment)
+                }
+            }
+        })
+
+
+
+
+
         StartTomatoButton.setOnClickListener {
+            if (allTypes.isEmpty()){
+                findNavController().navigate(R.id.action_changeTypeFragment_to_newTypeFragment)
+                return@setOnClickListener
+            }
             val type = allTypes[ChangeTypeSpinner.selectedIndex]
             //TODO:
             //2) start notification for end of tomato
             val newTomato = Tomato(type = type.id!!,isCurrent = true)
             viewModel.tomatoInsert(newTomato)
-//            val bundle = Bundle()
-//            bundle.putParcelable("currentTomato",newTomato)
-//            bundle.putParcelable("currentType",type)
-            findNavController().navigate(R.id.action_changeTypeFragment_to_splashFragment)
+            findNavController().navigate(R.id.action_changeTypeFragment_to_tomatoFragment)
         }
+
+    }
+
+    private fun getTypesMap(): Map<Int, String> {
+        var typesMaps:MutableMap<Int,String> = mutableMapOf()
+
+        //todo should check if alltypes is present
+        for (type in allTypes){
+            typesMaps.put(type.id!!,type.name)
+        }
+        return typesMaps.toMap()
 
     }
 }

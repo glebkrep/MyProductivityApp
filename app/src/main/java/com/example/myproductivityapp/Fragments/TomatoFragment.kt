@@ -37,15 +37,29 @@ class TomatoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = Util.getViewModel(activity!!)
-        currentTomato = arguments!!.getParcelable<Tomato>("currentTomato")!!
-        currentType = arguments!!.getParcelable<Type>("currentType")!!
 
-        updateUiWithTomato(currentTomato)
+//
+        viewModel.lastTomato.observe(this, Observer {
+            it?.let {
+                currentTomato = it
+                if (!currentTomato.isCurrent){
+                    findNavController().navigate(R.id.action_tomatoFragment_to_changeTypeFragment)
+                }
+                else if (currentTomato.endTime!=null){
+                    findNavController().navigate(R.id.action_tomatoFragment_to_chillFragment)
+                }
+                viewModel.typeById(currentTomato.type).observe(this, Observer {
+                    if(!it.isNullOrEmpty()){
+                        currentType = it.first()
+                        updateUi()
+                    }
+                })
 
+            }
+        })
 
         StopButton.setOnClickListener {
             //TODO:
-            //3) navigateTo(changeType)
             //4) turn off scheduled notification for end of tomato
             viewModel.stopTomato(currentTomato)
             findNavController().navigate(R.id.action_tomatoFragment_to_changeTypeFragment)
@@ -58,31 +72,41 @@ class TomatoFragment : Fragment() {
             val endTime = System.currentTimeMillis()
 
             viewModel.tomatoAddEndTime(currentTomato.id!!,endTime)
-            findNavController().navigate(R.id.action_tomatoFragment_to_splashFragment)
+            findNavController().navigate(R.id.action_tomatoFragment_to_chillFragment)
         }
 
 
     }
 
-    fun updateUiWithTomato(tomato:Tomato){
+    fun updateUi(){
         TomatoTypeText.text = "Type: " + currentType.name
 
         //TODO: to util class
-        val millisLeft= ((Util.TOMATO_TIME - (System.currentTimeMillis() - tomato.startTime)))
+        val millisLeft= ((Util.TOMATO_TIME - (System.currentTimeMillis() - currentTomato.startTime)))
 
-        val timer = myTimer(millisLeft,TimeText)
+        val timer = myTimer(millisLeft,TimeText,currentTomato.startTime)
         timer.start()
     }
 
-    class myTimer(millisLeft:Long,val timerTextView:TextView):CountDownTimer(millisLeft,1000){
+    //TODO: get rid of classes here
+    class myTimer(val millisLeft:Long,val timerTextView:TextView,val startTime:Long):CountDownTimer(millisLeft,1000){
         override fun onFinish() {
-            TODO("not implemented")
-            // TODO this should start new timer that goes beyond 0:0
+            afterTimer(timerTextView = timerTextView,startTime =startTime ).start()
+        }
+
+        override fun onTick(millisUntilFinished: Long) {
+            timerTextView.text = Util.millisToMS(millisUntilFinished)
+        }
+
+    }
+    class afterTimer(val millisLeft: Long = 100000000L,val timerTextView:TextView,val startTime:Long):CountDownTimer(millisLeft,1000){
+        override fun onFinish() {
             timerTextView.text = "That's it!"
         }
 
         override fun onTick(millisUntilFinished: Long) {
-            timerTextView.text = (millisUntilFinished/1000).toString()
+
+           timerTextView.text = "-"+Util.millisToMS(System.currentTimeMillis()-(Util.TOMATO_TIME+startTime))
         }
 
     }

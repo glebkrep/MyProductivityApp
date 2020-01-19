@@ -10,4 +10,6 @@
     <string name="change_type">Change work type</string>
     <string name="choose_type_text">Choose type:</string>
     <string name="start_tomato_button_text">Start tomato</string>
+    <string name="type_creation_dialog_name">Create type</string>
+    <string name="todays_tomatos_text">today\'s tomatos:</string>
 </resources>

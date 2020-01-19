@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 
 class TomatoAndTypeRepository(private val tomatoDao: TomatoDao,private val typeDao:TypeDao) {
 
-    val currentTomato:LiveData<List<Tomato>> = tomatoDao.getCurrentTomato()
+    val lastTomato:LiveData<Tomato> = tomatoDao.getLastTomato()
     val allTypes:LiveData<List<Type>> = typeDao.getAllTypes()
 
     //TYPE

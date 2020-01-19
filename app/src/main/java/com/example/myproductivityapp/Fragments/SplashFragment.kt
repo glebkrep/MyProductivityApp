@@ -34,28 +34,19 @@ class SplashFragment : Fragment() {
         viewModel = Util.getViewModel(activity!!)
 
 
-        viewModel.currentTomato.observe(this, Observer {
-            if (it.isEmpty()){
+        viewModel.lastTomato.observe(this, Observer {
+            if (it==null){
                 findNavController().navigate(R.id.action_splashFragment_to_changeTypeFragment)
             }
             else{
-                val tomato = it.first()
-                viewModel.typeById(tomato.type).observe(this, Observer {
-                    val type = it.first()
-                    val bundle = Bundle()
-                    bundle.putParcelable("currentTomato",tomato)
-                    bundle.putParcelable("currentType",type)
-                    if (tomato.endTime == null){
-                        findNavController().navigate(R.id.action_splashFragment_to_tomatoFragment,bundle)
-                    }
-                    else{
-                        findNavController().navigate(R.id.action_splashFragment_to_chillFragment,bundle)
-                    }
-                })
-
+                if (it.isCurrent){
+                    if (it.endTime==null) findNavController().navigate(R.id.action_splashFragment_to_tomatoFragment)
+                    else findNavController().navigate(R.id.action_splashFragment_to_chillFragment)
+                }
+                else findNavController().navigate(R.id.action_splashFragment_to_changeTypeFragment)
             }
-        })
 
+        })
 
     }
 }
