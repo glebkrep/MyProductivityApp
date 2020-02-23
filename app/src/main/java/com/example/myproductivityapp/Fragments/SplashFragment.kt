@@ -2,7 +2,6 @@ package com.example.myproductivityapp.Fragments
 
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.myproductivityapp.MainActivityViewModel
 import com.example.myproductivityapp.R
-import com.example.myproductivityapp.Util
+import com.example.myproductivityapp.Utils.Util
 
 /**
  * A simple [Fragment] subclass.

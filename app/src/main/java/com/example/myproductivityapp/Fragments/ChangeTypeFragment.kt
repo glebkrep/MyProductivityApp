@@ -6,17 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproductivityapp.MainActivityViewModel
+import com.example.myproductivityapp.Notifications.NotifUtils
+import com.example.myproductivityapp.Notifications.NotifyWorker
 import com.example.myproductivityapp.PastTomatosAdapter
 import com.example.myproductivityapp.R
 import com.example.myproductivityapp.Repository.Tomato
-import com.example.myproductivityapp.Util
+import com.example.myproductivityapp.Utils.Util
 import kotlinx.android.synthetic.main.fragment_change_type.*
-import java.lang.reflect.Type
 
 
 class ChangeTypeFragment : Fragment() {
@@ -103,9 +103,10 @@ class ChangeTypeFragment : Fragment() {
                 return@setOnClickListener
             }
             val type = allTypes[ChangeTypeSpinner.selectedIndex]
-            //TODO:
-            //2) start notification for end of tomato
             val newTomato = Tomato(type = type.id!!,isCurrent = true)
+
+            NotifUtils.scheduleNotification(context,true)
+
             viewModel.tomatoInsert(newTomato)
             findNavController().navigate(R.id.action_changeTypeFragment_to_tomatoFragment)
         }

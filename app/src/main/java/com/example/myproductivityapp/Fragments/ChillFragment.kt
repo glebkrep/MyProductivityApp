@@ -11,10 +11,11 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.myproductivityapp.MainActivityViewModel
+import com.example.myproductivityapp.Notifications.NotifUtils
 import com.example.myproductivityapp.R
 import com.example.myproductivityapp.Repository.Tomato
 import com.example.myproductivityapp.Repository.Type
-import com.example.myproductivityapp.Util
+import com.example.myproductivityapp.Utils.Util
 import kotlinx.android.synthetic.main.fragment_chill.*
 
 /**
@@ -59,17 +60,13 @@ class ChillFragment : Fragment() {
 
 
         chillStopButton.setOnClickListener {
-
-            //TODO
-            //2) turn off scheduled notification for end of chill
+            NotifUtils.stopNotif(context)
             viewModel.tomatoMarkInactive(currentTomato.id!!)
             findNavController().navigate(R.id.action_chillFragment_to_changeTypeFragment)
 
         }
         BackToWorkButton.setOnClickListener {
-            //TODO:
-            //1) turn off sched. notif for end of chill
-            //4) set notif for end of new tomato
+            NotifUtils.scheduleNotification(context,true)
             viewModel.tomatoMarkInactive(currentTomato.id!!)
             val newTomato = Tomato(type = currentType.id!!)
             viewModel.tomatoInsert(newTomato)
@@ -77,8 +74,7 @@ class ChillFragment : Fragment() {
 
         }
         ChangeTypeButton.setOnClickListener {
-            //TODO
-            //2) turn off scheduled notification for end of chill
+            NotifUtils.stopNotif(context)
             viewModel.tomatoMarkInactive(currentTomato.id!!)
             findNavController().navigate(R.id.action_chillFragment_to_changeTypeFragment)
 
@@ -114,7 +110,7 @@ class ChillFragment : Fragment() {
 
         override fun onTick(millisUntilFinished: Long) {
 
-            timerTextView.text = "-"+Util.millisToMS(System.currentTimeMillis()-(Util.TOMATO_TIME+startTime))
+            timerTextView.text = "-"+ Util.millisToMS(System.currentTimeMillis()-(Util.TOMATO_TIME+startTime))
         }
 
     }

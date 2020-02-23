@@ -9,16 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.myproductivityapp.MainActivityViewModel
+import com.example.myproductivityapp.Notifications.NotifUtils
 import com.example.myproductivityapp.R
 import com.example.myproductivityapp.Repository.Tomato
 import com.example.myproductivityapp.Repository.Type
-import com.example.myproductivityapp.Util
+import com.example.myproductivityapp.Utils.Util
 import kotlinx.android.synthetic.main.fragment_tomato.*
-import kotlin.reflect.typeOf
-import kotlin.system.measureTimeMillis
 
 class TomatoFragment : Fragment() {
 
@@ -38,7 +36,6 @@ class TomatoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = Util.getViewModel(activity!!)
 
-//
         viewModel.lastTomato.observe(this, Observer {
             it?.let {
                 currentTomato = it
@@ -59,16 +56,13 @@ class TomatoFragment : Fragment() {
         })
 
         StopButton.setOnClickListener {
-            //TODO:
-            //4) turn off scheduled notification for end of tomato
+            NotifUtils.stopNotif(context)
             viewModel.stopTomato(currentTomato)
             findNavController().navigate(R.id.action_tomatoFragment_to_changeTypeFragment)
         }
 
         ChillButton.setOnClickListener {
-            //TODO:
-            //4) turn off scheduled notif for end of tomato
-            //5) schedule notif for end of chill
+            NotifUtils.scheduleNotification(context,false)
             val endTime = System.currentTimeMillis()
 
             viewModel.tomatoAddEndTime(currentTomato.id!!,endTime)
@@ -82,6 +76,7 @@ class TomatoFragment : Fragment() {
         TomatoTypeText.text = "Type: " + currentType.name
 
         //TODO: to util class
+        //TODO move tomato_time to constants
         val millisLeft= ((Util.TOMATO_TIME - (System.currentTimeMillis() - currentTomato.startTime)))
 
         val timer = myTimer(millisLeft,TimeText,currentTomato.startTime)
@@ -106,7 +101,7 @@ class TomatoFragment : Fragment() {
 
         override fun onTick(millisUntilFinished: Long) {
 
-           timerTextView.text = "-"+Util.millisToMS(System.currentTimeMillis()-(Util.TOMATO_TIME+startTime))
+           timerTextView.text = "-"+ Util.millisToMS(System.currentTimeMillis()-(Util.TOMATO_TIME+startTime))
         }
 
     }

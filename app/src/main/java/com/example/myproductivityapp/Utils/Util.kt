@@ -1,10 +1,11 @@
-package com.example.myproductivityapp
+package com.example.myproductivityapp.Utils
 
 import android.content.Context
 import android.text.format.DateFormat
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.myproductivityapp.MainActivityViewModel
 
 
 object Util {
@@ -16,7 +17,7 @@ object Util {
         Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
     }
 
-    fun getViewModel(activity:FragmentActivity):MainActivityViewModel=
+    fun getViewModel(activity:FragmentActivity): MainActivityViewModel =
         activity.run {
             val factory = ViewModelProvider.AndroidViewModelFactory.getInstance(activity.application)
             ViewModelProvider(this,factory).get(MainActivityViewModel::class.java)
@@ -31,8 +32,14 @@ object Util {
 
 
     fun fromTo(startTime: Long, endTime: Long?): String {
-        if (endTime==null) return "from "+ millisToDate(startTime)
-        return "from " + millisToDate(startTime) + " to " + millisToDate(endTime!!)
+        if (endTime==null) return "from "+ millisToDate(
+            startTime
+        )
+        return "from " + millisToDate(
+            startTime
+        ) + " to " + millisToDate(
+            endTime!!
+        )
     }
 
     private fun millisToDate(millis:Long):String{
@@ -48,7 +55,11 @@ object Util {
         totalSeconds = totalSeconds - hours*60*60
         var minutes = totalSeconds/60
         totalSeconds = totalSeconds - minutes*60
-        var timeString = getEnoughDigits(minutes)+":"+ getEnoughDigits(totalSeconds)
+        var timeString = getEnoughDigits(
+            minutes
+        ) +":"+ getEnoughDigits(
+            totalSeconds
+        )
         if (hours>0){
             timeString = hours.toString()+":"+ timeString
         }

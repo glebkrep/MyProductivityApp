@@ -1,7 +1,6 @@
 package com.example.myproductivityapp.Fragments
 
 
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,9 +15,7 @@ import com.example.myproductivityapp.MainActivityViewModel
 import com.example.myproductivityapp.R
 import com.example.myproductivityapp.Repository.Type
 import com.example.myproductivityapp.TypesAdapter
-import com.example.myproductivityapp.Util
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.dialog.MaterialDialogs
+import com.example.myproductivityapp.Utils.Util
 import kotlinx.android.synthetic.main.fragment_new_type.*
 
 /**
