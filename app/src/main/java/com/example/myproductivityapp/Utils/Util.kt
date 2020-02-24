@@ -9,6 +9,7 @@ import com.example.myproductivityapp.MainActivityViewModel
 
 
 object Util {
+    //todo move to constants
 //    val TOMATO_TIME = 60L*35L*1000L
     val TOMATO_TIME = 1000L*5L
 //    val CHILL_TIME = 1000L * 60L * 5L

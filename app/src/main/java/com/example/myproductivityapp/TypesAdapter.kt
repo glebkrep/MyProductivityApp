@@ -25,10 +25,11 @@ class TypesAdapter(context: Context) : RecyclerView.Adapter<TypesAdapter.TypesVi
     }
 
     override fun onBindViewHolder(holder: TypesViewHolder, position: Int) {
-
         val current = typesList[position]
 
-        holder.typeName.text = current.name
+        with(holder){
+            typeName.text = current.name
+        }
     }
 
     fun setTypeList(types:List<com.example.myproductivityapp.Repository.Type>){

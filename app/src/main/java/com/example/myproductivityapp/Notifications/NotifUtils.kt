@@ -14,7 +14,6 @@ object NotifUtils {
             .build()
     }
 
-    //TODO: notification
     fun scheduleNotification(mContext:Context?,isTomato:Boolean){
 
         mContext?.let {

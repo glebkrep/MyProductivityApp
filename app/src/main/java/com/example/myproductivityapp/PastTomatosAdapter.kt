@@ -29,13 +29,14 @@ class PastTomatosAdapter(context: Context) : RecyclerView.Adapter<PastTomatosAda
     }
 
     override fun onBindViewHolder(holder: PastTomatosViewHolder, position: Int) {
-
         val current = tomatosList[position]
 
-        holder.typeName.text = typesMap.get(current.type)
-        //todo: util function to display as H:M:S
-        holder.fromTo.text = Util.fromTo(current.startTime,current.endTime)
-        holder.totalTime.text = Util.totalTime(current.endTime,current.startTime)
+        with(holder){
+            typeName.text = typesMap.get(current.type)
+            //todo: util function to display as H:M:S
+            fromTo.text = Util.fromTo(current.startTime,current.endTime)
+            totalTime.text = Util.totalTime(current.endTime,current.startTime)
+        }
     }
 
     fun setTomatosAndTypes(tomatos:List<com.example.myproductivityapp.Repository.Tomato>,typeMap:Map<Int,String>){
