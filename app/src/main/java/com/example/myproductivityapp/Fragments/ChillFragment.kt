@@ -4,9 +4,6 @@ package com.example.myproductivityapp.Fragments
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -46,14 +43,13 @@ class ChillFragment : Fragment(R.layout.fragment_chill) {
             }
         })
 
-
-        chillStopButton.setOnClickListener {
+        btn_stop_chill.setOnClickListener {
             NotifUtils.stopNotif(context)
             viewModel.tomatoMarkInactive(currentTomato.id!!)
             findNavController().navigate(R.id.action_chillFragment_to_changeTypeFragment)
 
         }
-        BackToWorkButton.setOnClickListener {
+        btn_back_to_work.setOnClickListener {
             NotifUtils.scheduleNotification(context,true)
             viewModel.tomatoMarkInactive(currentTomato.id!!)
             val newTomato = Tomato(type = currentType.id!!)
@@ -61,7 +57,7 @@ class ChillFragment : Fragment(R.layout.fragment_chill) {
             findNavController().navigate(R.id.action_chillFragment_to_tomatoFragment)
 
         }
-        ChangeTypeButton.setOnClickListener {
+        btn_change_type.setOnClickListener {
             NotifUtils.stopNotif(context)
             viewModel.tomatoMarkInactive(currentTomato.id!!)
             findNavController().navigate(R.id.action_chillFragment_to_changeTypeFragment)
@@ -71,15 +67,16 @@ class ChillFragment : Fragment(R.layout.fragment_chill) {
     }
 
 
-    fun updateUi(){
-        ChillTypeText.text = "Type: " + currentType.name
+    private fun updateUi(){
+        text_chill_tomato_type.text = "Type: " + currentType.name
         val millisLeft= ((Util.CHILL_TIME - (System.currentTimeMillis() - currentTomato.endTime!!)))
 
-        val timer = myTimer(millisLeft,ChillTimeText,currentTomato.endTime!!)
+        val timer = MyTimer(millisLeft,text_chill_time,currentTomato.endTime!!)
         timer.start()
     }
 
-    class myTimer(millisLeft:Long,val timerTextView: TextView,val endTime:Long): CountDownTimer(millisLeft,1000){
+    //todo unify
+    class MyTimer(millisLeft:Long, val timerTextView: TextView, val endTime:Long): CountDownTimer(millisLeft,1000){
         override fun onFinish() {
             afterTimer(timerTextView = timerTextView,startTime = endTime).start()
         }

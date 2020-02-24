@@ -7,7 +7,7 @@
     android:layout_margin="8dp">
 
     <TextView
-        android:id="@+id/pastTomatoTypeText"
+        android:id="@+id/text_past_tomato_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/pastTomatoFromTo"
+        android:id="@+id/text_past_tomato_from_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -25,11 +25,11 @@
         android:text="from 10:10 to 21:30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/pastTomatoTypeText"
-        app:layout_constraintTop_toBottomOf="@+id/pastTomatoTypeText" />
+        app:layout_constraintStart_toStartOf="@+id/text_past_tomato_type"
+        app:layout_constraintTop_toBottomOf="@+id/text_past_tomato_type" />
 
     <TextView
-        android:id="@+id/pastTomatoTotalTime"
+        android:id="@+id/text_past_tomato_total_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -37,6 +37,6 @@
         android:text="1 hour 2 minutes 13 seconds"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/pastTomatoFromTo"
-        app:layout_constraintTop_toBottomOf="@+id/pastTomatoFromTo" />
+        app:layout_constraintStart_toStartOf="@+id/text_past_tomato_from_to"
+        app:layout_constraintTop_toBottomOf="@+id/text_past_tomato_from_to" />
 </androidx.constraintlayout.widget.ConstraintLayout>

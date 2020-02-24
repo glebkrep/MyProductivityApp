@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/TomatoTypeText"
+        android:id="@+id/text_tomato_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/_TomatoText"
+        android:id="@+id/_text_tomato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -29,38 +29,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/TimeText"
+        android:id="@+id/text_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="02:36"
         android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="@+id/_TomatoText"
-        app:layout_constraintStart_toStartOf="@+id/_TomatoText"
-        app:layout_constraintTop_toBottomOf="@+id/_TomatoText" />
+        app:layout_constraintEnd_toEndOf="@+id/_text_tomato"
+        app:layout_constraintStart_toStartOf="@+id/_text_tomato"
+        app:layout_constraintTop_toBottomOf="@+id/_text_tomato" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/StopButton"
+        android:id="@+id/btn_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:text="@string/stop_button_text"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toStartOf="@+id/ChillButton"
+        app:layout_constraintEnd_toStartOf="@+id/btn_chill"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TimeText">
+        app:layout_constraintTop_toBottomOf="@+id/text_time">
 
     </com.google.android.material.button.MaterialButton>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/ChillButton"
+        android:id="@+id/btn_chill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="@string/chill_button_text"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/StopButton" />
+        app:layout_constraintTop_toTopOf="@+id/btn_stop" />
 </androidx.constraintlayout.widget.ConstraintLayout>

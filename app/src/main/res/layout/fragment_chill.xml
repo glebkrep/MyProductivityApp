@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/ChillTypeText"
+        android:id="@+id/text_chill_tomato_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/_ChillText"
+        android:id="@+id/_text_chill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -30,18 +30,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ChillTimeText"
+        android:id="@+id/text_chill_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="02:36"
         android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="@+id/_ChillText"
-        app:layout_constraintStart_toStartOf="@+id/_ChillText"
-        app:layout_constraintTop_toBottomOf="@+id/_ChillText" />
+        app:layout_constraintEnd_toEndOf="@+id/_text_chill"
+        app:layout_constraintStart_toStartOf="@+id/_text_chill"
+        app:layout_constraintTop_toBottomOf="@+id/_text_chill" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/chillStopButton"
+        android:id="@+id/btn_stop_chill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -49,22 +49,22 @@
         android:text="@string/stop_button_text"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChillTimeText">
+        app:layout_constraintTop_toBottomOf="@+id/text_chill_time">
 
     </com.google.android.material.button.MaterialButton>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/BackToWorkButton"
+        android:id="@+id/btn_back_to_work"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="@string/back_to_work_text"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/chillStopButton" />
+        app:layout_constraintTop_toTopOf="@+id/btn_stop_chill" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/ChangeTypeButton"
+        android:id="@+id/btn_change_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -72,6 +72,6 @@
         android:text="@string/change_type"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BackToWorkButton"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back_to_work"
         style="@style/Widget.MaterialComponents.Button.TextButton"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

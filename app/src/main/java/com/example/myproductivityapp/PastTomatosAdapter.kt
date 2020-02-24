@@ -14,9 +14,9 @@ class PastTomatosAdapter(context: Context) : RecyclerView.Adapter<PastTomatosAda
     private var typesMap = mapOf<Int,String>()
 
     inner class PastTomatosViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
-        val typeName = itemView.findViewById<TextView>(R.id.pastTomatoTypeText)
-        val totalTime = itemView.findViewById<TextView>(R.id.pastTomatoTotalTime)
-        val fromTo = itemView.findViewById<TextView>(R.id.pastTomatoFromTo)
+        val typeName = itemView.findViewById<TextView>(R.id.text_past_tomato_type)
+        val totalTime = itemView.findViewById<TextView>(R.id.text_past_tomato_total_time)
+        val fromTo = itemView.findViewById<TextView>(R.id.text_past_tomato_from_to)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PastTomatosViewHolder {

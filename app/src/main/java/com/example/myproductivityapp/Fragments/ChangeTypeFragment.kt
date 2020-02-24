@@ -3,15 +3,11 @@ package com.example.myproductivityapp.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproductivityapp.MainActivityViewModel
 import com.example.myproductivityapp.Notifications.NotifUtils
-import com.example.myproductivityapp.Notifications.NotifyWorker
 import com.example.myproductivityapp.PastTomatosAdapter
 import com.example.myproductivityapp.R
 import com.example.myproductivityapp.Repository.Tomato
@@ -24,9 +20,7 @@ class ChangeTypeFragment : Fragment(R.layout.fragment_change_type) {
 
     lateinit var viewModel: MainActivityViewModel
     lateinit var allTypes:List<com.example.myproductivityapp.Repository.Type>
-    lateinit var allTomatos:List<Tomato>
     lateinit var adapter:PastTomatosAdapter
-    var chosenId = -1
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -41,8 +35,8 @@ class ChangeTypeFragment : Fragment(R.layout.fragment_change_type) {
                 viewModel.allTomatos.observe(this, Observer {
                     if (it.isNotEmpty()){
                         adapter = PastTomatosAdapter(context!!)
-                        ChangeTypePastTomatosRV.adapter = adapter
-                        ChangeTypePastTomatosRV.layoutManager = LinearLayoutManager(context!!)
+                        recycler_past_tomatos.adapter = adapter
+                        recycler_past_tomatos.layoutManager = LinearLayoutManager(context!!)
                         val typesMap = getTypesMap()
                         adapter.setTomatosAndTypes(it,typesMap)
                     }
@@ -53,8 +47,8 @@ class ChangeTypeFragment : Fragment(R.layout.fragment_change_type) {
                     namesList.add(type.name)
                 }
                 namesList.add("Add new...")
-                ChangeTypeSpinner.setItems(namesList.toList())
-                ChangeTypeSpinner.setOnItemSelectedListener { view, position, id, item->
+                spinner_change_type.setItems(namesList.toList())
+                spinner_change_type.setOnItemSelectedListener { view, position, id, item->
                     Util.showShortToast(context!!,item.toString())
                     if (item.toString() =="Add new..."){
                         findNavController().navigate(R.id.action_changeTypeFragment_to_newTypeFragment)
@@ -64,8 +58,8 @@ class ChangeTypeFragment : Fragment(R.layout.fragment_change_type) {
             }
             else{
                 allTypes = emptyList()
-                ChangeTypeSpinner.setItems(listOf("Add new..."))
-                ChangeTypeSpinner.setOnItemSelectedListener { view, position, id, item ->
+                spinner_change_type.setItems(listOf("Add new..."))
+                spinner_change_type.setOnItemSelectedListener { view, position, id, item ->
                     Util.showShortToast(context!!,item.toString())
                     if (item.toString() =="Add new..."){
                         findNavController().navigate(R.id.action_changeTypeFragment_to_newTypeFragment)
@@ -89,12 +83,12 @@ class ChangeTypeFragment : Fragment(R.layout.fragment_change_type) {
 
 
 
-        StartTomatoButton.setOnClickListener {
+        btn_start_tomato.setOnClickListener {
             if (allTypes.isEmpty()){
                 findNavController().navigate(R.id.action_changeTypeFragment_to_newTypeFragment)
                 return@setOnClickListener
             }
-            val type = allTypes[ChangeTypeSpinner.selectedIndex]
+            val type = allTypes[spinner_change_type.selectedIndex]
             val newTomato = Tomato(type = type.id!!,isCurrent = true)
 
             NotifUtils.scheduleNotification(context,true)

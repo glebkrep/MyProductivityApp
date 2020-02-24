@@ -4,9 +4,6 @@ package com.example.myproductivityapp.Fragments
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -47,13 +44,13 @@ class TomatoFragment : Fragment(R.layout.fragment_tomato) {
             }
         })
 
-        StopButton.setOnClickListener {
+        btn_stop.setOnClickListener {
             NotifUtils.stopNotif(context)
             viewModel.stopTomato(currentTomato)
             findNavController().navigate(R.id.action_tomatoFragment_to_changeTypeFragment)
         }
 
-        ChillButton.setOnClickListener {
+        btn_chill.setOnClickListener {
             NotifUtils.scheduleNotification(context,false)
             val endTime = System.currentTimeMillis()
 
@@ -65,13 +62,13 @@ class TomatoFragment : Fragment(R.layout.fragment_tomato) {
     }
 
     fun updateUi(){
-        TomatoTypeText.text = "Type: " + currentType.name
+        text_tomato_type.text = "Type: " + currentType.name
 
         //TODO: to util class
         //TODO move tomato_time to constants
         val millisLeft= ((Util.TOMATO_TIME - (System.currentTimeMillis() - currentTomato.startTime)))
 
-        val timer = myTimer(millisLeft,TimeText,currentTomato.startTime)
+        val timer = myTimer(millisLeft,text_time,currentTomato.startTime)
         timer.start()
     }
 

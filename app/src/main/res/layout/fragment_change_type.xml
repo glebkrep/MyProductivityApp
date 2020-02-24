@@ -7,7 +7,7 @@
     tools:context=".Fragments.ChangeTypeFragment">
 
     <TextView
-        android:id="@+id/_chooseTypeText"
+        android:id="@+id/_text_choose_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.jaredrummler.materialspinner.MaterialSpinner
-        android:id="@+id/ChangeTypeSpinner"
+        android:id="@+id/spinner_change_type"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -26,11 +26,11 @@
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/_chooseTypeText"
+        app:layout_constraintTop_toBottomOf="@+id/_text_choose_type"
         app:ms_arrow_tint="@color/colorPrimary"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/StartTomatoButton"
+        android:id="@+id/btn_start_tomato"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,23 +39,23 @@
         android:text="@string/start_tomato_button_text"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/ChangeTypeSpinner"
-        app:layout_constraintStart_toStartOf="@+id/ChangeTypeSpinner" />
+        app:layout_constraintEnd_toEndOf="@+id/spinner_change_type"
+        app:layout_constraintStart_toStartOf="@+id/spinner_change_type" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ChangeTypePastTomatosRV"
+        android:id="@+id/recycler_past_tomatos"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/StartTomatoButton"
+        app:layout_constraintBottom_toTopOf="@+id/btn_start_tomato"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider"
         tools:listitem="@layout/past_tomato_rv_item" />
 
     <TextView
-        android:id="@+id/_tomatosTodayText"
+        android:id="@+id/_text_tomatos_today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -66,7 +66,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChangeTypeSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_change_type" />
 
     <View
         android:id="@+id/divider"
@@ -76,7 +76,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="64dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="@+id/ChangeTypeSpinner"
-        app:layout_constraintStart_toStartOf="@+id/ChangeTypeSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/_tomatosTodayText" />
+        app:layout_constraintEnd_toEndOf="@+id/spinner_change_type"
+        app:layout_constraintStart_toStartOf="@+id/spinner_change_type"
+        app:layout_constraintTop_toBottomOf="@+id/_text_tomatos_today" />
 </androidx.constraintlayout.widget.ConstraintLayout>
