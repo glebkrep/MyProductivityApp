@@ -18,19 +18,7 @@ import com.example.myproductivityapp.Repository.Type
 import com.example.myproductivityapp.Utils.Util
 import kotlinx.android.synthetic.main.fragment_chill.*
 
-/**
- * A simple [Fragment] subclass.
- */
-class ChillFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chill, container, false)
-    }
-
+class ChillFragment : Fragment(R.layout.fragment_chill) {
 
     lateinit var viewModel: MainActivityViewModel
     lateinit var currentTomato: Tomato
@@ -85,8 +73,6 @@ class ChillFragment : Fragment() {
 
     fun updateUi(){
         ChillTypeText.text = "Type: " + currentType.name
-
-        //TODO: to util class
         val millisLeft= ((Util.CHILL_TIME - (System.currentTimeMillis() - currentTomato.endTime!!)))
 
         val timer = myTimer(millisLeft,ChillTimeText,currentTomato.endTime!!)

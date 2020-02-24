@@ -18,16 +18,9 @@ import com.example.myproductivityapp.Repository.Tomato
 import com.example.myproductivityapp.Utils.Util
 import kotlinx.android.synthetic.main.fragment_change_type.*
 
+//TODO remove already sent notification form app
 
-class ChangeTypeFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_change_type, container, false)
-    }
+class ChangeTypeFragment : Fragment(R.layout.fragment_change_type) {
 
     lateinit var viewModel: MainActivityViewModel
     lateinit var allTypes:List<com.example.myproductivityapp.Repository.Type>
@@ -50,7 +43,6 @@ class ChangeTypeFragment : Fragment() {
                         adapter = PastTomatosAdapter(context!!)
                         ChangeTypePastTomatosRV.adapter = adapter
                         ChangeTypePastTomatosRV.layoutManager = LinearLayoutManager(context!!)
-                        //todo: set tomatos with their types map
                         val typesMap = getTypesMap()
                         adapter.setTomatosAndTypes(it,typesMap)
                     }
@@ -116,7 +108,8 @@ class ChangeTypeFragment : Fragment() {
     private fun getTypesMap(): Map<Int, String> {
         var typesMaps:MutableMap<Int,String> = mutableMapOf()
 
-        //todo should check if alltypes is present
+        if (allTypes.isNullOrEmpty()) return emptyMap()
+
         for (type in allTypes){
             typesMaps.put(type.id!!,type.name)
         }

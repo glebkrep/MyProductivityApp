@@ -18,18 +18,8 @@ import com.example.myproductivityapp.TypesAdapter
 import com.example.myproductivityapp.Utils.Util
 import kotlinx.android.synthetic.main.fragment_new_type.*
 
-/**
- * A simple [Fragment] subclass.
- */
-class NewTypeFragment : Fragment() {
+class NewTypeFragment : Fragment(R.layout.fragment_new_type) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_type, container, false)
-    }
     lateinit var editText:EditText
     lateinit var viewModel: MainActivityViewModel
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -18,17 +18,9 @@ import com.example.myproductivityapp.Repository.Type
 import com.example.myproductivityapp.Utils.Util
 import kotlinx.android.synthetic.main.fragment_tomato.*
 
-class TomatoFragment : Fragment() {
+class TomatoFragment : Fragment(R.layout.fragment_tomato) {
+    //TODO: util function for getting viewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        //TODO: util function for getting viewModel
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tomato, container, false)
-    }
     lateinit var viewModel: MainActivityViewModel
     lateinit var currentTomato:Tomato
     lateinit var currentType:Type
